@@ -4,6 +4,7 @@ import '../util/assets.dart';
 
 class Home extends StatelessWidget {
   var assetCourse = Assets.courses;
+  var assetProf = Assets.professor;
 
   var headerName = "Maulidani Mahmud";
   var headerImage = Assets.imgAvatar;
@@ -27,9 +28,11 @@ class Home extends StatelessWidget {
                 header(headerName, headerImage),
                 searchBar(),
                 gridCourseType(),
-                titleCourseOnProgress("Course on Progress ${assetCourse.length}", (){}),
+                titleCourseOnProgress(
+                    "Course on Progress ${assetCourse.length}", () {}),
                 listCourseOnProgress(),
-                titleCourseOnProgress("Professor", (){}),
+                titleCourseOnProgress("Professor", () {}),
+                listProfessor(),
               ],
             ),
           ))
@@ -196,7 +199,8 @@ class Home extends StatelessWidget {
             style: TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
           ),
-          GestureDetector(onTap: () {}, child: Icon(Icons.navigate_next))
+          GestureDetector(
+              onTap: () => function, child: Icon(Icons.navigate_next))
         ],
       ),
     );
@@ -285,5 +289,49 @@ class Home extends StatelessWidget {
             ),
           );
         });
+  }
+
+  Widget listProfessor() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 12, bottom: 24),
+      child: SizedBox(
+        height: 120,
+        child: ListView.builder(
+            padding: EdgeInsets.only(left: 24, top: 12, bottom: 12),
+            itemCount: assetProf.length,
+            scrollDirection: Axis.horizontal,
+            // shrinkWrap: true,
+            // physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              var prof = Assets.professor.elementAt(index);
+              return Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 12, 0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 0),
+                        blurRadius: 10,
+                        color: Colors.black12),
+                  ],
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.asset(
+                        prof,
+                        fit: BoxFit.cover,
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
+    );
   }
 }
