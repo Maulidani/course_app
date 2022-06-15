@@ -1,8 +1,11 @@
+
+import 'package:course_app/page/detail.dart';
 import 'package:flutter/material.dart';
 
 import '../util/assets.dart';
 
 class Home extends StatelessWidget {
+  var assetCourseType = Assets.courseType;
   var assetCourse = Assets.courses;
   var assetProf = Assets.professor;
 
@@ -14,6 +17,8 @@ class Home extends StatelessWidget {
   var courseFrontendTitle = "Frontend";
   var courseBackendModul = 12;
   var courseFrontendModul = 8;
+
+  Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +32,9 @@ class Home extends StatelessWidget {
               children: [
                 header(headerName, headerImage),
                 searchBar(),
-                gridCourseType(),
+                gridCourseType(context),
                 titleCourseOnProgress(
-                    "Course on Progress ${assetCourse.length}", () {}),
+                    "Course on Progress (${assetCourse.length})", () {}),
                 listCourseOnProgress(),
                 titleCourseOnProgress("Professor", () {}),
                 listProfessor(),
@@ -122,30 +127,36 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget gridCourseType() {
+  Widget gridCourseType(BuildContext context) {
     return GridView.builder(
         padding: EdgeInsets.all(24),
-        itemCount: 2,
+        itemCount: assetCourseType.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 0.7,
-          crossAxisCount: 2,
+          crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
           crossAxisSpacing: 16,
           mainAxisSpacing: 8,
         ),
         itemBuilder: (context, index) {
-          if (index == 0) {
-            return itemGridCourseType(courseBackendImage, courseBackendTitle,
-                "$courseBackendModul Modul");
-          } else {
-            return itemGridCourseType(courseFrontendImage, courseFrontendTitle,
-                "$courseFrontendModul Modul");
-          }
+          Map courseType = Assets.courseType[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Detail(map: courseType),
+                ),
+              );
+            },
+            child: itemGridCourseType(courseType["image"],
+                courseType["title"], courseType["modul"]),
+          );
         });
   }
 
-  Widget itemGridCourseType(String image, String title, String subTitle) {
+  Widget itemGridCourseType(String image, String title, int modul) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -178,7 +189,7 @@ class Home extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                subTitle,
+                "$modul Modul",
                 style: TextStyle(color: Colors.black38, fontSize: 14),
               ),
             ],

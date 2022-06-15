@@ -6,6 +6,19 @@ class Assets {
   static const imgBackend = "assets/images/backend.jpg";
   static const imgFrontend = "assets/images/frontend.jpg";
 
+  static const courseType = [
+    {
+      "title":"Backend",
+      "image":"assets/images/backend.jpg",
+      "modul":12
+    },
+    {
+      "title":"Frontend",
+      "image":"assets/images/frontend.jpg",
+      "modul":8
+    }
+  ];
+
   static const professor = {
     "assets/images/prof1.png",
     "assets/images/prof2.png",
@@ -29,14 +42,14 @@ class Assets {
         modul: 17,
         color: Colors.cyan),
     Course(
-        type: ["Backend"],
+        type: ["Backend", "Frontend"],
         name: "Java",
         image: "assets/images/logo_java.png",
         duration: "10 Hours",
         modul: 17,
         color: Colors.cyan),
     Course(
-        type: ["Backend"],
+        type: ["Backend", "Frontend"],
         name: "Kotlin",
         image: "assets/images/logo_kotlin.png",
         duration: "8 Hours 20 Min",
