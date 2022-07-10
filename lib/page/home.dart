@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import '../util/assets.dart';
 
 class Home extends StatelessWidget {
-  var assetCourseType = Assets.courseType;
-  var assetCourse = Assets.courses;
-  var assetProf = Assets.professor;
+  final assetCourseType = Assets.courseType;
+  final assetCourse = Assets.courses;
+  final assetProf = Assets.professor;
 
-  var headerName = "Maulidani Mahmud";
-  var headerImage = Assets.imgAvatar;
-  var courseBackendImage = Assets.imgBackend;
-  var courseFrontendImage = Assets.imgFrontend;
-  var courseBackendTitle = "Backend";
-  var courseFrontendTitle = "Frontend";
-  var courseBackendModul = 12;
-  var courseFrontendModul = 8;
+  final headerName = "Maulidani Mahmud";
+  final headerImage = Assets.imgAvatar;
+  final courseBackendImage = Assets.imgBackend;
+  final courseFrontendImage = Assets.imgFrontend;
+  final courseBackendTitle = "Backend";
+  final courseFrontendTitle = "Frontend";
+  final courseBackendModul = 12;
+  final courseFrontendModul = 8;
 
   Home({Key? key}) : super(key: key);
 
@@ -49,7 +49,7 @@ class Home extends StatelessWidget {
   Widget background() {
     return Container(
       height: 300,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.indigo,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(50),
@@ -67,13 +67,13 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Hello,",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 Text(
                   name,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Row(
           children: [
-            Expanded(
+            const Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search..",
@@ -119,7 +119,7 @@ class Home extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.keyboard_arrow_down_rounded),
+              icon: const Icon(Icons.keyboard_arrow_down_rounded),
             )
           ],
         ),
@@ -129,10 +129,10 @@ class Home extends StatelessWidget {
 
   Widget gridCourseType(BuildContext context) {
     return GridView.builder(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         itemCount: assetCourseType.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 0.7,
           crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
@@ -160,7 +160,7 @@ class Home extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
               offset: Offset(0, 0), blurRadius: 10, color: Colors.black12),
         ],
@@ -183,14 +183,14 @@ class Home extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.bold),
               ),
               Text(
                 "$modul Modul",
-                style: TextStyle(color: Colors.black38, fontSize: 14),
+                style: const TextStyle(color: Colors.black38, fontSize: 14),
               ),
             ],
           ),
@@ -207,11 +207,11 @@ class Home extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
           ),
           GestureDetector(
-              onTap: () => function, child: Icon(Icons.navigate_next))
+              onTap: () => function, child: const Icon(Icons.navigate_next))
         ],
       ),
     );
@@ -219,17 +219,17 @@ class Home extends StatelessWidget {
 
   Widget listCourseOnProgress() {
     return ListView.builder(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24),
         itemCount: assetCourse.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           var course = Assets.courses[index];
           return Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 6),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 6),
             decoration: BoxDecoration(
               color: Colors.indigo,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     offset: Offset(0, 0),
                     blurRadius: 10,
@@ -259,7 +259,7 @@ class Home extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 8.0, top: 6),
                         child: Text(
                           course.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
@@ -269,7 +269,7 @@ class Home extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 8.0, top: 8),
                         child: Text(
                           course.duration,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white54,
                             fontSize: 14,
                           ),
@@ -285,7 +285,7 @@ class Home extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(100),
                       onTap: () {},
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.all(6),
                         child: Icon(
                           Icons.play_arrow_rounded,
@@ -308,7 +308,7 @@ class Home extends StatelessWidget {
       child: SizedBox(
         height: 120,
         child: ListView.builder(
-            padding: EdgeInsets.only(left: 24, top: 12, bottom: 12),
+            padding: const EdgeInsets.only(left: 24, top: 12, bottom: 12),
             itemCount: assetProf.length,
             scrollDirection: Axis.horizontal,
             // shrinkWrap: true,
@@ -316,10 +316,10 @@ class Home extends StatelessWidget {
             itemBuilder: (context, index) {
               var prof = Assets.professor.elementAt(index);
               return Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 12, 0),
+                margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                         offset: Offset(0, 0),
                         blurRadius: 10,
